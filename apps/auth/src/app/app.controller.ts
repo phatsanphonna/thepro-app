@@ -1,13 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
-
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { UserCredentialDto } from './dto/user-credential.dto';
 
-@Controller()
+@Controller('/')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getData() {
-    return this.appService.getData();
+  @Post('/signin')
+  async signIn(@Body() userCredentialDto: UserCredentialDto) {
+    return await this.appService.signIn(userCredentialDto)
+  }
+
+  @Post('/register')
+  async register(@Body() userCredentialDto: UserCredentialDto) {
+    return await this.appService.register(userCredentialDto)
   }
 }
