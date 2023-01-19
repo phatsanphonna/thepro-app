@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
+    "start": "npx nx run-many --target=serve --all=true",
     "build": "nx build",
     "test": "nx test"
   },
@@ -16,6 +16,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@prisma/client": "^4.9.0",
     "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "tslib": "^2.3.0"
@@ -32,6 +34,7 @@
     "@nrwl/workspace": "15.3.0",
     "@nx-tools/nx-prisma": "^4.0.2",
     "@types/bcrypt": "^5.0.0",
+    "@types/cookie-parser": "^1.4.3",
     "@types/jest": "28.1.1",
     "@types/node": "18.7.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
