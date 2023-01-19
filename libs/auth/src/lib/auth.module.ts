@@ -22,6 +22,6 @@ import { AuthEntity } from './auth.entity';
   ],
   controllers: [],
   providers: [AuthService, AuthEntity, JwtService],
-  exports: [JwtModule, AuthService, AuthEntity],
+  exports: [JwtModule, AuthService, AuthEntity, ConfigModule],
 })
 export class AuthModule {}
