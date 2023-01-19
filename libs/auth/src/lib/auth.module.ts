@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { DatabaseModule } from '@thepro/database'
 import { AuthEntity } from './auth.entity';
@@ -21,7 +21,7 @@ import { AuthEntity } from './auth.entity';
     }),
   ],
   controllers: [],
-  providers: [AuthService, AuthEntity],
+  providers: [AuthService, AuthEntity, JwtService],
   exports: [JwtModule, AuthService, AuthEntity],
 })
 export class AuthModule {}
