@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  # Auth App
+  auth-api:
+    container_name: thepro-auth-api
+    extends:
+      file: docker-compose.base.yaml
+      service: nx-app-base
+    command: node ./dist/apps/authentication/main.js
+    ports:
+      - 7801:8801 # API Entry port
+
+  # Resource App
+  resource-api:
+    container_name: thepro-resource-api
+    extends:
+      file: docker-compose.base.yaml
+      service: nx-app-base
+    command: node ./dist/apps/resource/main.js
+    ports:
+      - 7802:8802 # API Entry port
+
+volumes:
+  mono-node-modules: null

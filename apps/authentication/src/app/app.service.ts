@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { AuthEntity, AuthService } from '@thepro/auth';
 import { UserCredentialDto } from './dto/user-credential.dto';
 
@@ -24,7 +24,14 @@ export class AppService {
       )
     }
 
-    return await this.authService.createAccessToken(userAuth)
+    const token = await this.authService.createAccessToken(userAuth)
+    const ticket = {
+      id: userAuth.id,
+      email: userAuth.email,
+      role: userAuth.role
+    }
+
+    return { token, ticket }
   }
 
   async register(userCredentialDto: UserCredentialDto) {
@@ -33,7 +40,7 @@ export class AppService {
     const userAuth = await this.authEntity.findUserAuthByEmail(email)
 
     if (userAuth) {
-      throw new NotFoundException(`User with email: "${email}" already exist.`)
+      throw new ForbiddenException(`User with email: "${email}" already exist.`)
     }
 
     const data = await this.authService.createUserAuth({ email, password })

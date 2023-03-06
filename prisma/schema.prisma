@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -13,6 +14,11 @@ enum Role {
   ADMIN
 }
 
+enum FileType {
+  VIDEO
+  FILE
+}
+
 model UserAuth {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   publicId String @unique @default(uuid())
@@ -22,5 +28,40 @@ model UserAuth {
 
   password String
 
-  role Role @default(value: STUDENT)
+  role    Role     @default(value: STUDENT)
+  Student Student?
+}
+
+model Student {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userAuth   UserAuth @relation(fields: [userAuthId], references: [publicId])
+  userAuthId String   @unique
+
+  firstname String
+  lastname  String
+  nickname  String
+
+  telephoneNumber         String
+  guardianTelephoneNumber String
+}
+
+model File {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name     String
+  type     FileType
+  location String
+
+  assignment   Assignment[] @relation(fields: [assignmentId], references: [id])
+  assignmentId String[]     @db.ObjectId
+}
+
+model Assignment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  title      String
+  descripton String
+
+  material   File[]   @relation(fields: [materialId], references: [id])
+  materialId String[] @db.ObjectId
 }

@@ -14,9 +14,16 @@ export class AuthService {
 
   async createAccessToken(payload: UserAuth) {
     return await this.jwtService.signAsync({
-      id: payload.publicId,
-      role: payload.role
+      ticket: {
+        id: payload.publicId,
+        email: payload.email,
+        role: payload.role,
+      }
     })
+  }
+
+  async verifyAccessToken(accessToken: string) {
+    return await this.jwtService.verifyAsync(accessToken)
   }
 
   async createHash(payload: string) {
