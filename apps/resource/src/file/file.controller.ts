@@ -35,6 +35,8 @@ export class FileController {
   ) {
     const { file, storedFile } = await this.fileService.getFile(id);
 
+    // if file is not a video,
+    // just return a signed url and redirect
     if (file.type === FileType.FILE) {
       const fileUrl = await this.storageService.getSignedUrl(file.location);
       return response.redirect(fileUrl);
@@ -42,7 +44,6 @@ export class FileController {
 
     const [metadata] = await storedFile.getMetadata();
     const fileSize = metadata.size;
-
     const range = request.headers.range;
 
     if (range) {
@@ -81,7 +82,6 @@ export class FileController {
     );
 
     stream.on('finish', () => {
-      console.log('ok');
       response.status(HttpStatus.CREATED).json(fileDB);
     });
   }
