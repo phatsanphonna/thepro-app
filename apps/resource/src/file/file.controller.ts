@@ -20,7 +20,7 @@ import { UploadedFileDto } from './dto/uploaded-file.dto';
 import { StorageService } from '@thepro/storage';
 
 @Controller('/file')
-// @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 export class FileController {
   constructor(
     private readonly fileService: FileService,
