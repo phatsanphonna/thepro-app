@@ -17,7 +17,7 @@ export class AuthService {
       ticket: {
         id: payload.publicId,
         email: payload.email,
-        role: payload.role,
+        roles: payload.roles,
       }
     })
   }

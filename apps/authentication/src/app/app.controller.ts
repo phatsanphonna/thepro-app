@@ -14,10 +14,10 @@ export class AppController {
   ) {
   }
 
-  @Post('/signin')
+  @Post(['/signin', 'signIn'])
   async signIn(
     @Body() userCredentialDto: UserCredentialDto,
-    @Res({ passthrough: true }) response,
+    @Res({ passthrough: true }) response: Response,
   ) {
     const { token, ticket } = await this.appService.signIn(userCredentialDto)
 
@@ -37,14 +37,14 @@ export class AppController {
     return await this.appService.register(userCredentialDto)
   }
 
-  @Post('/signout')
+  @Post(['/signout', '/signOut'])
   async signOut(@Res({ passthrough: true }) response: Response) {
-    console.log(response);
     response.clearCookie('accessToken', {
       httpOnly: true,
       domain: this.RESOURCE_DOMAIN,
       sameSite: 'strict',
     })
+
     response.status(200).send({ status: 'Signed out successfully.' }).end()
   }
 }

@@ -12,4 +12,8 @@ export class StorageService extends CloudStorage {
 
     return url
   }
+
+  getFile(contentUrl: string) {
+    return this.bucket().file(contentUrl)
+  }
 }

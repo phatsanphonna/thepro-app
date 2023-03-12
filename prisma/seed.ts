@@ -3,18 +3,15 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
 
 async function main() {
-  const student = await prisma.student.create({
+  const data = await prisma.file.create({
     data: {
-      firstname: 'ภัทร์สรรพ์พร',
-      lastname: 'นครานุรักษ์',
-      guardianTelephoneNumber: '0968936153',
-      telephoneNumber: '0968936153',
-      nickname: 'ซัน',
-      userAuthId: 'a646fee7-af0a-448a-9a36-5d6f4de25f35'
+      name: 'Sample Video',
+      type: 'VIDEO',
+      location: 'videos/sample_video.mp4'
     }
   })
 
-  console.log(student);
+  console.log(data);
 }
 
 main()

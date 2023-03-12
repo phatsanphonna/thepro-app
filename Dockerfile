@@ -9,6 +9,6 @@ COPY prisma ./prisma/
 
 RUN npm install
 RUN npx prisma generate
-RUN npm run build
+RUN npm run build:all
 
 CMD ["yarn", "start"]

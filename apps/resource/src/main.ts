@@ -1,11 +1,7 @@
-import { Logger } from '@nestjs/common';
-import { NestFactory, Reflector } from '@nestjs/core';
-
+import { Logger, ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import * as cookieParser from 'cookie-parser';
-import { AuthEntity, AuthService, RolesGuard } from '@thepro/auth';
-import { JwtService } from '@nestjs/jwt';
-import { DatabaseService } from '@thepro/database';
 
 async function bootstrap() {
   const logger = new Logger('ResourceApplication')
@@ -19,6 +15,7 @@ async function bootstrap() {
   const port = process.env.PORT || 7802;
 
   app.use(cookieParser());
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(port);
   Logger.log(

@@ -28,7 +28,7 @@ model UserAuth {
 
   password String
 
-  role    Role[]     @default(value: [STUDENT])
+  roles    Role[]     @default(value: [STUDENT])
   Student Student?
 }
 

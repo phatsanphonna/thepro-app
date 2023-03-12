@@ -28,7 +28,7 @@ export class AppService {
     const ticket = {
       id: userAuth.publicId,
       email: userAuth.email,
-      role: userAuth.role
+      roles: userAuth.roles
     }
 
     return { token, ticket }
