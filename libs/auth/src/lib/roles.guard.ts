@@ -31,6 +31,6 @@ export class RolesGuard implements CanActivate {
 
     const authTicket = this.authService.decode(request.cookies.accessToken)
 
-    return requireRoles.some((role) => authTicket.role === role)
+    return requireRoles.some((role) => authTicket.roles.includes(role))
   }
 }

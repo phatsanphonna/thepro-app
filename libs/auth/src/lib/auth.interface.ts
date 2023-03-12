@@ -8,5 +8,5 @@ export interface IUserCredential {
 export interface AuthTicket {
   email: string;
   id: string;
-  role: Role;
+  roles: Role[];
 }

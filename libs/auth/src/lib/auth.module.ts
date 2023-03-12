@@ -4,8 +4,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { DatabaseModule } from '@thepro/database'
 import { AuthEntity } from './auth.entity';
-import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './roles.guard';
 
 @Module({
   imports: [
