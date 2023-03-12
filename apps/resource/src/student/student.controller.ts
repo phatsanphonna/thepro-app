@@ -4,7 +4,6 @@ import {
   AuthGuard,
   AuthTicket,
   Roles,
-  RolesGuard,
   UserAuth,
 } from '@thepro/auth';
 import { Role } from '@prisma/client';
@@ -15,7 +14,6 @@ export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get('/')
-  @UseGuards(RolesGuard)
   @Roles([Role.STUDENT])
   async getStudent(@UserAuth() userAuth: AuthTicket) {
     return await this.studentService.getStudent(userAuth);
