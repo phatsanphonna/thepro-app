@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserAuth } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { IUserCredential } from './auth.interface';
+import { AuthTicket, IUserCredential } from './auth.interface';
 import { AuthEntity } from './auth.entity';
 
 @Injectable()
@@ -24,6 +24,11 @@ export class AuthService {
 
   async verifyAccessToken(accessToken: string) {
     return await this.jwtService.verifyAsync(accessToken)
+  }
+
+  decode(accessToken: string): AuthTicket {
+    const jwt = this.jwtService.decode(accessToken) as any;
+    return jwt.ticket as AuthTicket
   }
 
   async createHash(payload: string) {

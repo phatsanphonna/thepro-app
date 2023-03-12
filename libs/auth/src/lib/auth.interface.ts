@@ -1,3 +1,5 @@
+import { Role } from '@prisma/client';
+
 export interface IUserCredential {
   email: string;
   password: string;
@@ -6,4 +8,5 @@ export interface IUserCredential {
 export interface AuthTicket {
   email: string;
   id: string;
+  role: Role;
 }

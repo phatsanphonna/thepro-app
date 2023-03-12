@@ -1,6 +1,6 @@
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["debian-openssl-1.1.x"]
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -28,7 +28,7 @@ model UserAuth {
 
   password String
 
-  role    Role     @default(value: STUDENT)
+  role    Role[]     @default(value: [STUDENT])
   Student Student?
 }
 
@@ -43,6 +43,9 @@ model Student {
 
   telephoneNumber         String
   guardianTelephoneNumber String
+
+  assignment   Assignment[] @relation(fields: [assignmentId], references: [id])
+  assignmentId String[]     @db.ObjectId
 }
 
 model File {
@@ -64,4 +67,7 @@ model Assignment {
 
   material   File[]   @relation(fields: [materialId], references: [id])
   materialId String[] @db.ObjectId
+
+  assignToStudent   Student[] @relation(fields: [assignToStudentId], references: [id])
+  assignToStudentId String[]  @db.ObjectId
 }

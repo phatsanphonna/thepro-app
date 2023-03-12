@@ -1,13 +1,11 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { AuthTicket } from './auth.interface';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ExtractJwtPipe implements PipeTransform {
-  constructor(private readonly jwtService: JwtService) { }
+  constructor(private readonly authService: AuthService) { }
 
   transform(value: string) {
-    const jwt = this.jwtService.decode(value) as any;
-    return jwt.ticket as AuthTicket
+    return this.authService.decode(value)
   }
 }

@@ -1,13 +1,16 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { StudentService } from './student.service';
-import { AuthGuard, AuthTicket, UserAuth } from '@thepro/auth';
+import { AuthGuard, AuthTicket, Roles, RolesGuard, UserAuth } from '@thepro/auth';
+import { Role } from '@prisma/client';
 
 @Controller('/student')
 @UseGuards(AuthGuard)
 export class StudentController {
-  constructor(private readonly studentService: StudentService) {}
+  constructor(private readonly studentService: StudentService) { }
 
   @Get('/')
+  @UseGuards(RolesGuard)
+  @Roles([Role.STUDENT])
   async getStudent(@UserAuth() userAuth: AuthTicket) {
     return await this.studentService.getStudent(userAuth);
   }

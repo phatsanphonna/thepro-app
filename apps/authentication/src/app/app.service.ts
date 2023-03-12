@@ -26,7 +26,7 @@ export class AppService {
 
     const token = await this.authService.createAccessToken(userAuth)
     const ticket = {
-      id: userAuth.id,
+      id: userAuth.publicId,
       email: userAuth.email,
       role: userAuth.role
     }
