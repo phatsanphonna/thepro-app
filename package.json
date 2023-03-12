@@ -5,7 +5,8 @@
   "scripts": {
     "serve:parallel": "concurrently \"npx prisma studio\" \"npm run serve\"",
     "serve": "nx run-many --target=serve --all=true",
-    "build": "nx run-many --target=build --with-deps=true --all=true",
+    "build": "nx build",
+    "build:all": "nx run-many --target=build --with-deps=true --all=true",
     "start": "nx serve",
     "test": "nx test",
     "lint": "nx run-many --target=lint --all=true",
