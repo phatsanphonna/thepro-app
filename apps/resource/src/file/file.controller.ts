@@ -1,4 +1,16 @@
-import { Controller, UseGuards, Get, Param, Req, Res, Post, UseInterceptors, UploadedFile, Body, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Get,
+  Param,
+  Req,
+  Res,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  Body,
+  HttpStatus
+} from '@nestjs/common';
 import { AuthGuard } from '@thepro/auth';
 import { FileService } from './file.service';
 import { Request, Response } from 'express';
