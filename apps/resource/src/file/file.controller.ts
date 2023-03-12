@@ -1,9 +1,8 @@
-import { Controller, UseGuards, Get, Param, Req, Res, Post, UseInterceptors, UploadedFile, Body } from '@nestjs/common';
+import { Controller, UseGuards, Get, Param, Req, Res, Post, UseInterceptors, UploadedFile, Body, HttpStatus } from '@nestjs/common';
 import { AuthGuard } from '@thepro/auth';
 import { FileService } from './file.service';
 import { Request, Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Express } from 'express'
 import { FileType } from '@prisma/client';
 import { UploadedFileDto } from './dto/uploaded-file.dto';
 import { StorageService } from '@thepro/storage';
@@ -60,10 +59,15 @@ export class FileController {
   @Post('/upload')
   @UseInterceptors(FileInterceptor('file', { preservePath: true }))
   async uploadVideo(
-    @Req() request: Request,
     @Res() response: Response,
     @Body() uploadFileDto: UploadedFileDto,
     @UploadedFile('file') file?
   ) {
+    const { stream, fileDB } = await this.fileService.uploadFile(file, uploadFileDto)
+
+    stream.on('finish', () => {
+      console.log('ok');
+      response.status(HttpStatus.CREATED).json(fileDB);
+    })
   }
 }

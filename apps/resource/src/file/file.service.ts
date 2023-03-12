@@ -18,6 +18,14 @@ export class FileService {
   }
 
   async uploadFile(file, uploadFileDto: UploadedFileDto) {
-    return
+    const { title, type } = uploadFileDto;
+
+    const { stream, destination } = await this.storageService.uploadFile(file, {
+      title: uploadFileDto.title, type: uploadFileDto.type
+    })
+
+    const fileDB = await this.fileEntity.createFile({ name: title, location: destination, type })
+
+    return { stream, fileDB }
   }
 }
