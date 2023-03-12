@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
 import { StorageService } from './storage.service';
 
-const injectableService = [
-  StorageService,
-]
+const injectableService = [StorageService];
 
 @Module({
   controllers: [],

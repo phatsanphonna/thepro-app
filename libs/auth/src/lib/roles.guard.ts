@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, ForbiddenException, Inject } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  Inject,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Role } from '@prisma/client';
 import { AuthService } from './auth.service';
@@ -7,32 +12,32 @@ export class RolesGuard implements CanActivate {
   constructor(
     @Inject(Reflector) private readonly reflector: Reflector,
     private readonly authService: AuthService
-  ) { }
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const requireRoles = this.reflector.getAllAndOverride<Role[]>('roles', [
       context.getHandler(),
-      context.getClass()
-    ])
+      context.getClass(),
+    ]);
 
-    const request = context.switchToHttp().getRequest()
+    const request = context.switchToHttp().getRequest();
 
     if (!request.cookies.accessToken) {
-      throw new ForbiddenException('Invalid accessToken')
+      throw new ForbiddenException('Invalid accessToken');
     }
 
     const verify = await this.authService.verifyAccessToken(
       request.cookies.accessToken
-    )
+    );
 
     if (!verify) {
-      throw new ForbiddenException('Invalid accessToken')
+      throw new ForbiddenException('Invalid accessToken');
     }
 
-    const authTicket = this.authService.decode(request.cookies.accessToken)
+    const authTicket = this.authService.decode(request.cookies.accessToken);
 
     console.log(authTicket);
 
-    return requireRoles.some((role) => authTicket.roles.includes(role))
+    return requireRoles.some((role) => authTicket.roles.includes(role));
   }
 }

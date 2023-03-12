@@ -6,13 +6,8 @@ import { AuthModule } from '@thepro/auth';
 import { FileModule } from '../file/file.module';
 
 @Module({
-  imports: [
-    AssignmentModule,
-    AuthModule,
-    StudentModule,
-    FileModule
-  ],
+  imports: [AssignmentModule, AuthModule, StudentModule, FileModule],
   controllers: [AppController],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

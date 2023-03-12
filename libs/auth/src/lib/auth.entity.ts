@@ -3,15 +3,13 @@ import { DatabaseService } from '@thepro/database';
 
 @Injectable()
 export class AuthEntity {
-  constructor(
-    private readonly databaseService: DatabaseService
-  ) { }
+  constructor(private readonly databaseService: DatabaseService) {}
 
   async findUserAuthByEmail(email: string) {
     return await this.databaseService.userAuth.findUnique({
       where: {
         email,
-      }
+      },
     });
   }
 
@@ -19,8 +17,8 @@ export class AuthEntity {
     return await this.databaseService.userAuth.create({
       data: {
         email,
-        password
-      }
-    })
+        password,
+      },
+    });
   }
 }

@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly authEntity: AuthEntity
-  ) { }
+  ) {}
 
   async createAccessToken(payload: UserAuth) {
     return await this.jwtService.signAsync({
@@ -18,35 +18,35 @@ export class AuthService {
         id: payload.publicId,
         email: payload.email,
         roles: payload.roles,
-      }
-    })
+      },
+    });
   }
 
   async verifyAccessToken(accessToken: string) {
-    return await this.jwtService.verifyAsync(accessToken)
+    return await this.jwtService.verifyAsync(accessToken);
   }
 
   decode(accessToken: string): AuthTicket {
     const jwt = this.jwtService.decode(accessToken) as any;
-    return jwt.ticket as AuthTicket
+    return jwt.ticket as AuthTicket;
   }
 
   async createHash(payload: string) {
-    return await bcrypt.hash(payload, 10)
+    return await bcrypt.hash(payload, 10);
   }
 
   async compareHash(payload: string, hash: string) {
-    return await bcrypt.compare(payload, hash)
+    return await bcrypt.compare(payload, hash);
   }
 
   async createUserAuth(credential: IUserCredential) {
-    const { email, password } = credential
+    const { email, password } = credential;
 
-    const hashedPassword = await this.createHash(password)
-    return await this.authEntity.createUserAuth(email, hashedPassword)
+    const hashedPassword = await this.createHash(password);
+    return await this.authEntity.createUserAuth(email, hashedPassword);
   }
 
   async sendVerificationEmail() {
-    return
+    return;
   }
 }

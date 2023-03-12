@@ -4,10 +4,10 @@ import { AppModule } from './app/app.module';
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  const logger = new Logger('ResourceApplication')
+  const logger = new Logger('ResourceApplication');
 
   const app = await NestFactory.create(AppModule, {
-    logger
+    logger,
   });
 
   const globalPrefix = 'api';

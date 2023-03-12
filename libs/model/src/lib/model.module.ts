@@ -4,15 +4,11 @@ import { StudentEntity } from './student.entity';
 import { AssignmentEntity } from './assignment.entity';
 import { FileEntity } from './file.entity';
 
-const injectableService = [
-  StudentEntity,
-  AssignmentEntity,
-  FileEntity
-]
+const injectableService = [StudentEntity, AssignmentEntity, FileEntity];
 @Module({
   imports: [DatabaseModule],
   controllers: [],
   providers: injectableService,
   exports: injectableService,
 })
-export class ModelModule { }
+export class ModelModule {}

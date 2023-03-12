@@ -3,9 +3,9 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class ExtractJwtPipe implements PipeTransform {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   transform(value: string) {
-    return this.authService.decode(value)
+    return this.authService.decode(value);
   }
 }

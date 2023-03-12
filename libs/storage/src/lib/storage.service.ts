@@ -23,17 +23,19 @@ export class StorageService extends CloudStorage {
   }
 
   async getSignedUrl(contentUrl: string) {
-    const [url] = await this.bucket().file(contentUrl).getSignedUrl({
-      version: 'v4',
-      action: 'read',
-      expires: Date.now() + 2 * 60 * 60 * 1000, // 2 hours
-    })
+    const [url] = await this.bucket()
+      .file(contentUrl)
+      .getSignedUrl({
+        version: 'v4',
+        action: 'read',
+        expires: Date.now() + 2 * 60 * 60 * 1000, // 2 hours
+      });
 
-    return url
+    return url;
   }
 
   getFile(contentUrl: string) {
-    return this.bucket().file(contentUrl)
+    return this.bucket().file(contentUrl);
   }
 
   private bufferToStream(buffer: Buffer) {
@@ -53,23 +55,25 @@ export class StorageService extends CloudStorage {
     if (type === FileType.VIDEO) {
       destination = `videos/${this.setFilename(
         title,
-        this.parseFileExtension(uploadFile.originalname),
+        this.parseFileExtension(uploadFile.originalname)
       )}`;
     } else {
       destination = `files/${this.setFilename(
         title,
-        this.parseFileExtension(uploadFile.originalname),
+        this.parseFileExtension(uploadFile.originalname)
       )}`;
     }
 
     const file = this.getFile(destination);
 
-    const stream = this.bufferToStream(uploadFile.buffer).pipe(file.createWriteStream({
-      contentType: uploadFile.mimetype,
-      gzip: true,
-      resumable: false,
-    }))
+    const stream = this.bufferToStream(uploadFile.buffer).pipe(
+      file.createWriteStream({
+        contentType: uploadFile.mimetype,
+        gzip: true,
+        resumable: false,
+      })
+    );
 
-    return { stream, destination }
+    return { stream, destination };
   }
 }

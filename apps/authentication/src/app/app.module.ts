@@ -5,11 +5,8 @@ import { DatabaseModule } from '@thepro/database';
 import { AuthModule } from '@thepro/auth';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    AuthModule,
-  ],
+  imports: [DatabaseModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

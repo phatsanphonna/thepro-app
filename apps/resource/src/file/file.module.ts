@@ -8,6 +8,6 @@ import { AuthModule } from '@thepro/auth';
 @Module({
   imports: [StorageModule, ModelModule, AuthModule],
   controllers: [FileController],
-  providers: [FileService]
+  providers: [FileService],
 })
 export class FileModule {}

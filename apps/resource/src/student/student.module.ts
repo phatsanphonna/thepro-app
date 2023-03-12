@@ -9,4 +9,4 @@ import { AuthModule } from '@thepro/auth';
   providers: [StudentService],
   controllers: [StudentController],
 })
-export class StudentModule { }
+export class StudentModule {}

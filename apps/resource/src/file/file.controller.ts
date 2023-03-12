@@ -9,7 +9,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Body,
-  HttpStatus
+  HttpStatus,
 } from '@nestjs/common';
 import { AuthGuard } from '@thepro/auth';
 import { FileService } from './file.service';
@@ -25,7 +25,7 @@ export class FileController {
   constructor(
     private readonly fileService: FileService,
     private readonly storageService: StorageService
-  ) { }
+  ) {}
 
   @Get('/:id')
   async getFile(
@@ -33,38 +33,38 @@ export class FileController {
     @Req() request: Request,
     @Res() response: Response
   ) {
-    const { file, storedFile } = await this.fileService.getFile(id)
+    const { file, storedFile } = await this.fileService.getFile(id);
 
     if (file.type === FileType.FILE) {
-      const fileUrl = await this.storageService.getSignedUrl(file.location)
-      return response.redirect(fileUrl)
+      const fileUrl = await this.storageService.getSignedUrl(file.location);
+      return response.redirect(fileUrl);
     }
 
-    const [metadata] = await storedFile.getMetadata()
-    const fileSize = metadata.size
+    const [metadata] = await storedFile.getMetadata();
+    const fileSize = metadata.size;
 
-    const range = request.headers.range
+    const range = request.headers.range;
 
     if (range) {
-      const [s, e] = range.replace(/bytes=/, '').split(';')
-      const start = parseInt(s, 10)
-      const end = e ? parseInt(e, 10) : fileSize - 1
+      const [s, e] = range.replace(/bytes=/, '').split(';');
+      const start = parseInt(s, 10);
+      const end = e ? parseInt(e, 10) : fileSize - 1;
 
       response.writeHead(206, {
         'Content-Range': `bytes ${start}-${end}/${fileSize}`,
         'Accept-Ranges': 'bytes',
         'Content-Length': start - end + 1,
-        'Content-Type': metadata.contentType
-      })
+        'Content-Type': metadata.contentType,
+      });
 
-      return storedFile.createReadStream({ start, end }).pipe(response)
+      return storedFile.createReadStream({ start, end }).pipe(response);
     } else {
       response.writeHead(200, {
         'Content-Length': fileSize,
-        'Content-Type': metadata.contentType
-      })
+        'Content-Type': metadata.contentType,
+      });
 
-      return storedFile.createReadStream().pipe(response)
+      return storedFile.createReadStream().pipe(response);
     }
   }
 
@@ -75,11 +75,14 @@ export class FileController {
     @Body() uploadFileDto: UploadedFileDto,
     @UploadedFile('file') file?
   ) {
-    const { stream, fileDB } = await this.fileService.uploadFile(file, uploadFileDto)
+    const { stream, fileDB } = await this.fileService.uploadFile(
+      file,
+      uploadFileDto
+    );
 
     stream.on('finish', () => {
       console.log('ok');
       response.status(HttpStatus.CREATED).json(fileDB);
-    })
+    });
   }
 }

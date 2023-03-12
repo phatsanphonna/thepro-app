@@ -8,8 +8,8 @@ export class StudentEntity {
   async findStudentByUserAuthId(userAuthId: string) {
     return await this.databaseService.student.findUnique({
       where: {
-        userAuthId
-      }
-    })
+        userAuthId,
+      },
+    });
   }
 }
