@@ -27,7 +27,8 @@ export class AuthService {
   }
 
   decode(accessToken: string): AuthTicket {
-    const jwt = this.jwtService.decode(accessToken) as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const jwt: any = this.jwtService.decode(accessToken);
     return jwt.ticket as AuthTicket;
   }
 

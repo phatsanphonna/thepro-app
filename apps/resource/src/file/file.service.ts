@@ -8,7 +8,7 @@ export class FileService {
   constructor(
     private readonly storageService: StorageService,
     private readonly fileEntity: FileEntity
-  ) { }
+  ) {}
 
   async getFile(id: string) {
     const file = await this.fileEntity.getFileById(id);

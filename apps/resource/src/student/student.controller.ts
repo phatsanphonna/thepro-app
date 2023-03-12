@@ -1,11 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { StudentService } from './student.service';
-import {
-  AuthGuard,
-  AuthTicket,
-  Roles,
-  UserAuth,
-} from '@thepro/auth';
+import { AuthGuard, AuthTicket, Roles, UserAuth } from '@thepro/auth';
 import { Role } from '@prisma/client';
 
 @Controller('/student')

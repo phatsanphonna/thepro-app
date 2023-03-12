@@ -50,18 +50,15 @@ export class StorageService extends CloudStorage {
 
     const { title, type } = metadata;
 
-    let destination: string;
+    let destination: string = this.setFilename(
+      title,
+      this.parseFileExtension(uploadFile.originalname)
+    );
 
     if (type === FileType.VIDEO) {
-      destination = `videos/${this.setFilename(
-        title,
-        this.parseFileExtension(uploadFile.originalname)
-      )}`;
+      destination = `videos/${destination}`;
     } else {
-      destination = `files/${this.setFilename(
-        title,
-        this.parseFileExtension(uploadFile.originalname)
-      )}`;
+      destination = `files/${destination}`;
     }
 
     const file = this.getFile(destination);

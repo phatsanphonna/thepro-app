@@ -12,8 +12,8 @@ import { APP_GUARD } from '@nestjs/core';
   providers: [
     {
       provide: APP_GUARD,
-      useClass: RolesGuard
-    }
+      useClass: RolesGuard,
+    },
   ],
 })
-export class AppModule { }
+export class AppModule {}
