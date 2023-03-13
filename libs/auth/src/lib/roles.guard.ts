@@ -5,7 +5,7 @@ import {
   Inject,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Role } from '@prisma/client';
+import { Role } from '@thepro/database';
 import { AuthService } from './auth.service';
 
 export class RolesGuard implements CanActivate {

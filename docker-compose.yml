@@ -4,20 +4,26 @@ services:
   # Auth App
   auth-api:
     container_name: thepro-auth-api
+    build:
+      context: .
+      dockerfile: ./apps/auth-api/Dockerfile
+    command: node ./dist/apps/auth-api/index.js
     extends:
       file: docker-compose.base.yaml
       service: nx-app-base
-    command: node ./dist/apps/authentication/main.js
     ports:
       - 7801:8801 # API Entry port
 
   # Resource App
   resource-api:
     container_name: thepro-resource-api
+    build:
+      context: .
+      dockerfile: ./apps/resource-api/Dockerfile
     extends:
       file: docker-compose.base.yaml
       service: nx-app-base
-    command: node ./dist/apps/resource/main.js
+    command: node ./dist/apps/resource-api/index.js
     ports:
       - 7802:8802 # API Entry port
 

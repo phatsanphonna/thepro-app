@@ -15,7 +15,7 @@ import { AuthGuard } from '@thepro/auth';
 import { FileService } from './file.service';
 import { Request, Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { FileType } from '@prisma/client';
+import { FileType } from '@thepro/database';
 import { UploadedFileDto } from './dto/uploaded-file.dto';
 import { StorageService } from '@thepro/storage';
 

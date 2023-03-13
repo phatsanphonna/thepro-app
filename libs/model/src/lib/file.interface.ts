@@ -1,4 +1,4 @@
-import { FileType } from '@prisma/client';
+import { FileType } from '@thepro/database';
 
 export interface ICreateFile {
   name: string;

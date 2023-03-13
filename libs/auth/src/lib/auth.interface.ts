@@ -1,4 +1,4 @@
-import { Role } from '@prisma/client';
+import { Role } from '@thepro/database';
 
 export interface IUserCredential {
   email: string;

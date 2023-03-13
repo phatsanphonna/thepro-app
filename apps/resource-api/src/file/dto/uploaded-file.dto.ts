@@ -1,4 +1,4 @@
-import { FileType } from '@prisma/client';
+import { FileType } from '@thepro/database';
 import { IsNotEmpty, IsOptional, IsEnum } from 'class-validator';
 
 export class UploadedFileDto {

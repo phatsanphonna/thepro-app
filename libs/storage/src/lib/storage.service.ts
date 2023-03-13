@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CloudStorage } from './cloud-storage.service';
 import { parse } from 'path';
-import { FileType } from '@prisma/client';
+import { FileType } from '@thepro/database';
 import { Duplex } from 'stream';
 
 interface IFileMetadata {

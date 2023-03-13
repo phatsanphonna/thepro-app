@@ -1,0 +1,71 @@
+{
+  "name": "resource-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/resource-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/resource-api",
+        "main": "apps/resource-api/src/main.ts",
+        "tsConfig": "apps/resource-api/tsconfig.app.json",
+        "assets": ["apps/resource-api/src/assets"],
+        "externalDependencies": "all",
+        "outputFileName": "index.js",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/resource-api/src/environments/environment.ts",
+              "with": "apps/resource-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "resource-api:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "resource-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/resource-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/resource-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "gcloud functions deploy thepro-resource-api --region=asia-southeast1 --gen2 --source=./dist/apps/resource-api --trigger-http --runtime=nodejs16 --entry-point=thepro-resource-api --env-vars-file=env.prod.yaml --allow-unauthenticated --project=the-pro-tutor-by-kppm"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { File } from '@prisma/client';
 import { DatabaseService } from '@thepro/database';
 import { ICreateFile } from './file.interface';
 

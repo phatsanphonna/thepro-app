@@ -42,3 +42,5 @@ package-lock.json
 docker-compose.base.yaml
 pnpm-lock.yaml
 yarn.lock
+env.yaml
+env.prod.yaml
