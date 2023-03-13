@@ -4,7 +4,6 @@ import {
   AuthGuard,
   AuthTicket,
   Roles,
-  RolesGuard,
   UserAuth,
 } from '@thepro/auth';
 import { Role } from '@thepro/database';

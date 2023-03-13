@@ -8,6 +8,7 @@
     "build": "nx build --with-deps=true",
     "build:all": "nx run-many --target=build --with-deps=true --all=true --verbose=true",
     "build:backend": "nx run-many --target=build --projects=authentication,resource --with-deps=true --verbose=true --configuration production",
+    "build:image": "npm run build:all && docker-compose build",
     "serve": "nx serve",
     "deploy": "nx deploy",
     "test": "nx test",

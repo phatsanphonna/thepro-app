@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { UserCredentialDto } from './dto/user-credential.dto';
 import { ConfigService } from '@nestjs/config';
@@ -12,6 +12,11 @@ export class AppController {
     private readonly appService: AppService,
     private readonly configService: ConfigService
   ) {}
+
+  @Get()
+  getHello() {
+    return { message: 'Hello World' };
+  }
 
   @Post(['/signin', 'signIn'])
   async signIn(
