@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "serve:parallel": "concurrently \"npx prisma studio\" \"npm run serve\"",
-    "serve": "set NODE_ENV='development' && nx run-many --target=serve --all=true",
+    "serve:parallel": "concurrently \"npx prisma studio\" \"npm run serve:all\"",
+    "serve:all": "set NODE_ENV='development' && nx run-many --target=serve --all=true",
     "build": "nx build --with-deps=true",
     "build:all": "nx run-many --target=build --with-deps=true --all=true --verbose=true",
     "build:backend": "nx run-many --target=build --projects=authentication,resource --with-deps=true --verbose=true --configuration production",
-    "start": "nx serve",
+    "serve": "nx serve",
     "deploy": "nx deploy",
     "test": "nx test",
     "lint": "nx run-many --target=lint --all=true",
@@ -21,7 +21,6 @@
   },
   "private": true,
   "dependencies": {
-    "@google-cloud/functions-framework": "^3.1.3",
     "@google-cloud/storage": "^6.9.4",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",

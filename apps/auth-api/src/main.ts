@@ -5,7 +5,6 @@ import * as express from 'express';
 import type { Express } from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as cookieParser from 'cookie-parser';
-import { http } from '@google-cloud/functions-framework';
 
 async function createNestServer(expressInstance: Express) {
   const logger = new Logger('AuthApplication');

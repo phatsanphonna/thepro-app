@@ -13,8 +13,10 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
 
+    console.log('ok');
+
     if (!request.cookies.accessToken) {
-      throw new ForbiddenException('Invalid accessToken');
+      throw new ForbiddenException('accessToken is not found or may be invalid.');
     }
 
     const verify = await this.authService.verifyAccessToken(
@@ -22,7 +24,7 @@ export class AuthGuard implements CanActivate {
     );
 
     if (!verify) {
-      throw new ForbiddenException('Invalid accessToken');
+      throw new ForbiddenException('accessToken is not found or may be invalid.');
     }
 
     return true;

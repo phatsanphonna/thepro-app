@@ -4,13 +4,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { DatabaseModule } from '@thepro/database';
 import { AuthEntity } from './auth.entity';
-import { RolesGuard } from './roles.guard';
-import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
     DatabaseModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: process.env.NODE_ENV === 'development' ? '.env' : '.env.production'
+    }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

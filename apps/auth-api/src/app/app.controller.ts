@@ -6,8 +6,8 @@ import { Response } from 'express';
 
 @Controller('/')
 export class AppController {
-  RESOURCE_DOMAIN = this.configService.get<string>('FRONTEND_DOMAIN');
-
+  readonly RESOURCE_DOMAIN = this.configService.get<string>('FRONTEND_DOMAIN');
+  readonly NODE_ENV = this.configService.get<string>('NODE_ENV')
   constructor(
     private readonly appService: AppService,
     private readonly configService: ConfigService
@@ -23,9 +23,10 @@ export class AppController {
     response.cookie('accessToken', token, {
       httpOnly: true,
       domain: this.RESOURCE_DOMAIN,
+      secure: this.NODE_ENV === 'production',
       // 5 hours
       expires: new Date(new Date().getTime() + 5 * 60 * 60 * 1000),
-      sameSite: 'strict',
+      sameSite: 'lax',
     });
 
     return { token, ticket };
@@ -41,6 +42,7 @@ export class AppController {
     response.clearCookie('accessToken', {
       httpOnly: true,
       domain: this.RESOURCE_DOMAIN,
+      secure: this.NODE_ENV === 'production',
       sameSite: 'strict',
     });
 

@@ -12,7 +12,7 @@ export class RolesGuard implements CanActivate {
   constructor(
     @Inject(Reflector) private readonly reflector: Reflector,
     private readonly authService: AuthService
-  ) {}
+  ) { }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const requireRoles = this.reflector.getAllAndOverride<Role[]>('roles', [
@@ -20,10 +20,14 @@ export class RolesGuard implements CanActivate {
       context.getClass(),
     ]);
 
+    if (!requireRoles) {
+      return true
+    }
+
     const request = context.switchToHttp().getRequest();
 
     if (!request.cookies.accessToken) {
-      throw new ForbiddenException('Invalid accessToken');
+      throw new ForbiddenException('accessToken is not found or may be invalid.');
     }
 
     const verify = await this.authService.verifyAccessToken(
@@ -31,12 +35,10 @@ export class RolesGuard implements CanActivate {
     );
 
     if (!verify) {
-      throw new ForbiddenException('Invalid accessToken');
+      throw new ForbiddenException('accessToken is not found or may be invalid.');
     }
 
     const authTicket = this.authService.decode(request.cookies.accessToken);
-
-    console.log(authTicket);
 
     return requireRoles.some((role) => authTicket.roles.includes(role));
   }

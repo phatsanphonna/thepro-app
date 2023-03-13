@@ -5,7 +5,6 @@ import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import type { Express } from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { http } from '@google-cloud/functions-framework';
 
 const GLOBAL_PREFIX = 'api';
 
