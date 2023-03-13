@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "the-pro-tutor-by-kppm",
+  "private_key_id": "c788ca7958d628882b377962573b855e813de830",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDCWWDINMBLVXv4\nJXYxDPdB8YHd8t9rFUHzv8JBTDmsiqbzz56R+WQUvqLPuXYSe0X1t2x7vkm+dtpJ\ncagIDpoOYTiMJnV+Lb02OPUbbdnps+P4svFr/DWbv0IN1NPF3QbLIeGoK8y62f9P\nWkyPmExpELSXFzLoDw5Os2vUemmAtiO9nvnK0BspXMTI/8abDTUWdGnGkuc6GXkV\nogp+59Y8+7tN2COASfec4RwGlhsuVzqD3W0Y1z38YGC73hBp0gamCLdKZ1gX2uIH\n2Fb23eLFpwf2hShMqe6dhpFbp+B/FPu5Et6XaSz6OpV6o8Zg2pQRlFplhPuIBTm/\ndyGdnnvzAgMBAAECggEAMcIGWFvBG8iAG9EjiH1kVJrLgBKthtIDd6+RwXwNjBJX\nmjZ+x6rNJ86DCqHWC/dJuxZCDRBz+vKdAo650Y5DfQkBHEjAbhSxy88bWfFvCDmJ\nVWQjEV2aMAzwkW/65D6pfZpoFtFX8kLb7eoVjfIVJhUj10cWPnmUVSv0oIrStiP5\nmwS9Vf3u1u1SOvzETq1ZqluTymL1uE4DvCa9Hr3JSbTizsZYA5FL+ofYoa7f6Uzt\nzFSCHzlnsAtaN9d/Dj2wCzOkLSLcWfa1uy3iTD/9IyxBOQ3vkP6jUaP3KciSmXhl\nI4k2YlPh4fJc0m1Cj++RDrvlpHKJ9vwo8995B/5hUQKBgQDh06MmzWSwqo5pz0yW\nOmBzsaBbaRajcw5xNdOkX/0+4gcKSIMuBGe4QWZZhmqZ9/A01VX0X47YPJ/5JvGM\n1ZjfJl1SlhWEkQ3io+xY1iy8phzYqlgUzrdvx36WBPjVBY9D+ALDsjIyvbdKAJi4\nbaOTGTfrTY1H8aw36RuHOx8d6wKBgQDcUQ5LkkeYQPN5QZOWPjLoD1qfP26+ysEv\nerR89BNfiXzO3ng0yYm7eh5cIduQOQ9C73GZ5Zyx1GTXpIVkcXDalsn2hUAueiq6\nH92RQCH0WhNXNKHA5AejGRzTebffdQWEjVncAykXGwUHsT4LStW1fQXYAwwYFAjJ\nM8VeAUmwGQKBgFVBdyjhBhCEc3uS3ZEhvOQwvR+FjxxqBZvL/HjkHFGvN4U0VwH6\ne8XeOuu1iW1TY4YuvGKj6OPOD38aqrrGsQ4eB8F0E++Wa62SwVnQkdcux1ktBk/k\nsvAqWqn8eozBqpK4gSKslbL+WMJBc2a9TbHtJWVaQ+pTXPdGtDPbqCW9AoGAbZF+\nK4VPR+AddhNv48uBI7nnFsXEPOy3EPbUZkQ4kk3dHUC0xYPplKxSBv3rpRlLhr1w\nYNo5iJMZp8kxcdedCYjuXkS8u6CUOUZ5ubAMcuqNLdSGEVkWlz15AY9KK76WBOsL\nYojL2ardYIr8UT9hc0X/LwOs8xibmfy+TlcTn5kCgYATf1d0dmpjBeUHRCAUvsv8\niziZsG8l09FA7tq9XoUmb1rbCzGncgPadSQvreQaN0coK80ygq72Bp7WL3rDjO4I\nipeXihrm2m/vZKiOZ06oVk/T/adD2TZV/99ykt5fypSzrDymJaShYnPhTgjz5hK5\nK9fvO9nibAAoJBKzbVh9Bw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "theprotutor-bucket@the-pro-tutor-by-kppm.iam.gserviceaccount.com",
+  "client_id": "109358514695835450532",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/theprotutor-bucket%40the-pro-tutor-by-kppm.iam.gserviceaccount.com"
+}
