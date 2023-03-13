@@ -4,6 +4,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { DatabaseModule } from '@thepro/database';
 import { AuthEntity } from './auth.entity';
+import { RolesGuard } from './roles.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -21,7 +23,10 @@ import { AuthEntity } from './auth.entity';
       }),
     }),
   ],
-  providers: [AuthService, AuthEntity],
+  providers: [
+    AuthService,
+    AuthEntity,
+  ],
   exports: [JwtModule, AuthService, AuthEntity, ConfigModule],
 })
-export class AuthModule {}
+export class AuthModule { }
