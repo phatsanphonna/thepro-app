@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@thepro/auth": ["libs/auth/src/index.ts"],
+      "@thepro/config": ["libs/config/src/index.ts"],
       "@thepro/database": ["libs/database/src/index.ts"],
       "@thepro/model": ["libs/model/src/index.ts"],
       "@thepro/storage": ["libs/storage/src/index.ts"]

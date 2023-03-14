@@ -3,10 +3,12 @@ import {
   ExecutionContext,
   ForbiddenException,
   Inject,
+  Logger,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Role } from '@thepro/database';
+import { Role } from '@thepro/model';
 import { AuthService } from './auth.service';
+import { Request } from 'express';
 
 export class RolesGuard implements CanActivate {
   constructor(
@@ -24,7 +26,7 @@ export class RolesGuard implements CanActivate {
       return true
     }
 
-    const request = context.switchToHttp().getRequest();
+    const request: Request = context.switchToHttp().getRequest();
 
     if (!request.cookies.accessToken) {
       throw new ForbiddenException('accessToken is not found or may be invalid.');

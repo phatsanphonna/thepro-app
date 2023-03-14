@@ -5,20 +5,27 @@ import * as express from 'express';
 import type { Express } from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as cookieParser from 'cookie-parser';
+import 'dotenv/config'
+import { TheProTutorConfigModule } from '@thepro/config';
+import { ConfigService } from '@nestjs/config';
 
 async function createNestServer(expressInstance: Express) {
   const logger = new Logger('AuthApplication');
 
   const app = await NestFactory.create(
     AppModule,
-    new ExpressAdapter(expressInstance),
-    {
+    new ExpressAdapter(expressInstance), {
       logger,
     }
   );
 
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
+
+  app.enableCors({
+    origin: '*',
+    credentials: true,
+  })
 
   return app.init();
 }
@@ -27,9 +34,15 @@ const server = express();
 
 createNestServer(server)
   .then(async (app) => {
-    const PORT = process.env.PORT || 7801;
+    const configService: ConfigService = app.get(ConfigService);
 
-    await app.listen(PORT);
-    Logger.log(`🚀 Application is running on: http://localhost:${PORT}/`);
+    const PORT = configService.get('PORT') || 7801;
+    const HOSTNAME = configService.get('HOST') || 'localhost';
+    const NODE_ENV = configService.get('NODE_ENV');
+
+    await app.listen(PORT, HOSTNAME);
+    Logger.log(
+      `🚀 Application is running in ${NODE_ENV} mode on: http://${HOSTNAME}:${PORT}/`
+    );
   })
   .catch((err) => Logger.error(err));

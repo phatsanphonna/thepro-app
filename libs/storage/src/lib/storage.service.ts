@@ -1,13 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CloudStorage } from './cloud-storage.service';
 import { parse } from 'path';
-import { FileType } from '@thepro/database';
+import { FileType } from '@thepro/model';
 import { Duplex } from 'stream';
-
-interface IFileMetadata {
-  type: FileType;
-  title: string;
-}
+import { IFileMetadata } from './storage.interface';
 
 @Injectable()
 export class StorageService extends CloudStorage {
@@ -46,14 +42,11 @@ export class StorageService extends CloudStorage {
   }
 
   async uploadFile(uploadFile, metadata: IFileMetadata) {
-    console.log(uploadFile);
-
+    const { originalname, buffer } = uploadFile;
     const { title, type } = metadata;
 
-    let destination: string = this.setFilename(
-      title,
-      this.parseFileExtension(uploadFile.originalname)
-    );
+    const fileExtension = this.parseFileExtension(originalname)
+    let destination = this.setFilename(title, fileExtension);
 
     if (type === FileType.VIDEO) {
       destination = `videos/${destination}`;
@@ -63,7 +56,7 @@ export class StorageService extends CloudStorage {
 
     const file = this.getFile(destination);
 
-    const stream = this.bufferToStream(uploadFile.buffer).pipe(
+    const stream = this.bufferToStream(buffer).pipe(
       file.createWriteStream({
         contentType: uploadFile.mimetype,
         gzip: true,

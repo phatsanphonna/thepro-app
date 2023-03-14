@@ -6,3 +6,4 @@ export * from './lib/auth.interface';
 export * from './lib/auth.guard';
 export * from './lib/roles.guard';
 export * from './lib/roles.decorator';
+export * from './lib/cookies.decorator'

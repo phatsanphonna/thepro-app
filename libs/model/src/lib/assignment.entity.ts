@@ -14,6 +14,10 @@ export class AssignmentEntity {
       where: {
         id,
       },
+      select: {
+        assignToStudent: true,
+        material: true
+      }
     });
   }
 }

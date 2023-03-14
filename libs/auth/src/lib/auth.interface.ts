@@ -1,4 +1,4 @@
-import { Role } from '@thepro/database';
+import { Role } from '@thepro/model';
 
 export interface IUserCredential {
   email: string;

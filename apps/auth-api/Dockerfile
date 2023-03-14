@@ -4,8 +4,16 @@ WORKDIR /app
 
 EXPOSE 7801
 
-COPY ../../ .
+ENV PORT 7801
+ENV HOST 0.0.0.0
+ENV NODE_ENV production
+
+COPY ../../dist/apps/auth-api .
+COPY ../../libs/database/prisma ./prisma
+COPY ../../.env.production .
+
+RUN cp .env.production .env
 
 RUN npx prisma generate
 
-CMD node ./dist/apps/auth-api/index.js
+CMD node ./index.js

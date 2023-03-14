@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserAuth } from '@thepro/database';
+import { UserAuth } from '@thepro/model';
 import * as bcrypt from 'bcrypt';
 import { AuthTicket, IUserCredential } from './auth.interface';
 import { AuthEntity } from './auth.entity';

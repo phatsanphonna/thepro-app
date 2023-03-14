@@ -10,6 +10,20 @@ export class StudentEntity {
       where: {
         userAuthId,
       },
+      include: {
+        userAuth: {
+          select: {
+            email: true,
+          }
+        },
+        assignment: {
+          select: {
+            id: true,
+            title: true,
+            descripton: true
+          }
+        },
+      }
     });
   }
 }

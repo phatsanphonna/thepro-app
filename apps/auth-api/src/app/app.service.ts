@@ -41,6 +41,13 @@ export class AppService {
     return { token, ticket };
   }
 
+  async verify(accessToken: string) {
+    if (!accessToken) return false
+
+    if (!await this.authService.verifyAccessToken(accessToken)) return false
+
+    return true
+  }
   async register(userCredentialDto: UserCredentialDto) {
     const { email, password } = userCredentialDto;
 

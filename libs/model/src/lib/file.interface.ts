@@ -1,4 +1,4 @@
-import { FileType } from '@thepro/database';
+import { FileType } from '@thepro/model';
 
 export interface ICreateFile {
   name: string;

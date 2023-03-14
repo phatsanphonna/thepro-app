@@ -4,13 +4,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { DatabaseModule } from '@thepro/database';
 import { AuthEntity } from './auth.entity';
+import { TheProTutorConfigModule } from '@thepro/config';
 
 @Module({
   imports: [
+    TheProTutorConfigModule,
     DatabaseModule,
-    ConfigModule.forRoot({
-      envFilePath: process.env.NODE_ENV === 'development' ? '.env' : '.env.production'
-    }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -24,6 +23,6 @@ import { AuthEntity } from './auth.entity';
     }),
   ],
   providers: [AuthService, AuthEntity],
-  exports: [JwtModule, AuthService, AuthEntity, ConfigModule],
+  exports: [JwtModule, AuthService, AuthEntity],
 })
 export class AuthModule {}

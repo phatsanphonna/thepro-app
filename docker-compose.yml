@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: ./apps/auth-api/Dockerfile
-    command: node ./dist/apps/auth-api/index.js
+    command: node ./index.js
     extends:
       file: docker-compose.base.yaml
       service: nx-app-base
@@ -23,9 +23,6 @@ services:
     extends:
       file: docker-compose.base.yaml
       service: nx-app-base
-    command: node ./dist/apps/resource-api/index.js
+    command: node ./index.js
     ports:
       - 7802:8802 # API Entry port
-
-volumes:
-  mono-node-modules: null

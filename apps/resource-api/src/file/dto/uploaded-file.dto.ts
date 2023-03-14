@@ -1,4 +1,4 @@
-import { FileType } from '@thepro/database';
+import { FileType } from '@thepro/model';
 import { IsNotEmpty, IsOptional, IsEnum } from 'class-validator';
 
 export class UploadedFileDto {
